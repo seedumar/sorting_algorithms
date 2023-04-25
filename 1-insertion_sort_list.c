@@ -5,18 +5,31 @@
 */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *node;
+	listint_t *temp, *new, *other;
 
-	if (list == NULL || (*list)->next == NULL)
+	if (!list || !(*list) || !(*list)->next)
 		return;
-	node = (*list)->next;
-	while (node)
+	other = *list;
+	new = *list;
+	other = other->next;
+	while (other != NULL)
 	{
-		while ((node->prev) && (node->prev->n > node->n))
+		new = other;
+		other = other->next;
+		while (new->prev != NULL && new->n < new->prev->n)
 		{
-			node = swap_node(node, list);
+			if (new->next != NULL)
+				new->next->prev = new->prev;
+			if (new->prev->prev != NULL)
+				new->prev->prev->next = new;
+			else
+				*list = new;
+			new->prev->next = new->next;
+			new->next = new->prev;
+			temp = new->prev->prev;
+			new->prev->prev = new;
+			new->prev = temp;
 			print_list(*list);
 		}
-		node = node->next;
 	}
 }
