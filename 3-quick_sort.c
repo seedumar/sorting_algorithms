@@ -1,74 +1,66 @@
 #include "sort.h"
 /**
-*@array: array
-*@item1: array element
-*@item2: array element
+ * partition - function of an array
+ * @array: Sorted array
+ * @l_index: lower index of array
+ * @h_index: higher index array
+ * @size: size of array
+ * Return: none
 */
-void swap(int *array, ssize_t item1, ssize_t item2)
+int partition(int *array, int l_index, int h_index, size_t size)
 {
-	int tmp;
+	int i, j, pivot_element, temp;
 
-	tmp = array[item1];
-	array[item1] = array[item2];
-	array[item2] = tmp;
-}
-/**
- *@quickSort - lomuto partition sorting scheme implementation
- *@array: array
- *@first: first array
- *@last: last array
- *@size: size array
- *Return: return the position of the last element
- */
-int quickSort(int *array, ssize_t first, ssize_t last, size_t size)
-{
-	int pivot = array[last];
-	ssize_t current = first, finder;
-
-	for (finder = first; finder < last; finder++)
+	pivot_element = array[h_index];
+	i = (l_index - 1);
+	for (j = l_index; j < _index; j++)
 	{
-		if (array[finder] < pivot)
+		if (array[j] <= pivot_element)
 		{
-			if (array[current] != array[finder])
+			i++;
+			if (i != j)
 			{
-				swap(array, current, finder);
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
 				print_array(array, size);
 			}
-			current++;
 		}
 	}
-	if (array[current] != array[last])
+	if (pivot_element < array[i + 1])
 	{
-		swap(array, current, last);
+		temp = array[i + 1];
+		array[i + 1] = array[high_index];
+		array[high_index] = temp;
 		print_array(array, size);
 	}
-	return (current);
+	return (i + 1);
 }
 /**
- *qs - qucksort algorithm
- *@array: array
- *@first: first array
- *@last: last array
- *@size: array size
- */
-void qs(int *array, ssize_t first, ssize_t last, int size)
+ * quickSort - function that sort an array
+ * @array: array to sort
+ * @l_index: lower index of array
+ * @h_index: higher index of array
+ * @size: size of array
+ * Return: none
+*/
+void quickSort(int *array, int l_index, int h_index, size_t size)
 {
-	ssize_t position = 0;
+	int pivot;
 
-
-	if (first < last)
+	if (l_index < h_index)
 	{
-		position = lomuto_partition(array, first, last, size);
-
-		qs(array, first, position - 1, size);
-		qs(array, position + 1, last, size);
+		pivot = partition(array, l_index, h_index, size);
+		quickSort(array, l_index, pivot - 1, size);
+		quickSort(array, pivot + 1, h_index, size);
 	}
 }
 /**
- *quick_sort - Function of array to pass
- *@array: array
- *@size: array size
- */
+ * quick_sort - Function that parse an array
+ * @array: Sorted array
+ * @size: size of array
+ * Return: none
+*/
 void quick_sort(int *array, size_t size)
 {
 	int low_index, high_index;
