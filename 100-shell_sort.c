@@ -5,7 +5,7 @@
  * @a: The first integer to swap.
  * @k: The second integer to swap.
  */
-void swap_int(int *a, int *k)
+void swap_ints(int *a, int *k)
 {
 	int tmp;
 
