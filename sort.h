@@ -4,6 +4,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*Comparison direction */
+#define UP 0
+#define DOWN 1
+/**
+ * enum bool - Enumeration boolean
+ * @false: = 0
+ * @true: = 1
+ * */
+typedef enum bool
+{
+	false = 0,
+	true
+} bool;
+
+
 /**
  * struct listint_s - Doubly linked list
  * @n: Integer node
@@ -16,6 +31,9 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
+
+void print_array(int *array, size_t size);
+void print_list(const listint_t *list);
 
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
@@ -30,5 +48,4 @@ void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
 
-void print_array(int *array, size_t size);
-void print_list(const listint_t *list);
+#endif /* SORT_H */
