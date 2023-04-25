@@ -21,19 +21,25 @@ void swap_ints(int *a, int *b)
  */
 void shell_sort(int *array, size_t size)
 {
-	size_t gap = 1, i, index = 0;
+	size_t gap, i, j;
 
 	if (array == NULL || size < 2)
 		return;
-	while (gap < size / 3)
-		gap = 3 * gap + 1;
-	while (gap >= 1)
+
+	for (gap = 1; gap < (size / 3);)
+		gap = gap * 3 + 1;
+
+	for (; gap >= 1; gap /= 3)
 	{
 		for (i = gap; i < size; i++)
-			for (index = i; index >= gap &&
-			 (array[index] < array[index - gap]); index -= gap)
-				swap(array, index, index - gap);
+		{
+			j = i;
+			while (j >= gap && array[j - gap] > array[j])
+			{
+				swap_ints(array + j, array + (j - gap));
+				j -= gap;
+			}
+		}
 		print_array(array, size);
-		gap /= 3;
 	}
 }
