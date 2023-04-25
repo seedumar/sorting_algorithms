@@ -13,7 +13,7 @@ int partition(int *array, int l_index, int h_index, size_t size)
 
 	pivot_element = array[h_index];
 	i = (l_index - 1);
-	for (j = l_index; j < _index; j++)
+	for (j = l_index; j < h_index; j++)
 	{
 		if (array[j] <= pivot_element)
 		{
@@ -30,8 +30,8 @@ int partition(int *array, int l_index, int h_index, size_t size)
 	if (pivot_element < array[i + 1])
 	{
 		temp = array[i + 1];
-		array[i + 1] = array[high_index];
-		array[high_index] = temp;
+		array[i + 1] = array[h_index];
+		array[h_index] = temp;
 		print_array(array, size);
 	}
 	return (i + 1);
