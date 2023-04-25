@@ -1,17 +1,17 @@
 #include "sort.h"
 
 /**
- * swap_int - Swap integers in an array.
+ * swap_ints - Swap integers in an array.
  * @a: The first integer to swap.
- * @k: The second integer to swap.
+ * @b: The second integer to swap.
  */
-void swap_ints(int *a, int *k)
+void swap_ints(int *a, int *b)
 {
 	int tmp;
 
 	tmp = *a;
-	*a = *k;
-	*k = tmp;
+	*a = *b;
+	*b = tmp;
 }
 
 /**
