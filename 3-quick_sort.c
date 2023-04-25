@@ -63,11 +63,11 @@ void quickSort(int *array, int l_index, int h_index, size_t size)
 */
 void quick_sort(int *array, size_t size)
 {
-	int low_index, high_index;
+	int l_index, h_index;
 
-	low_index = 0;
-	high_index = size - 1;
+	l_index = 0;
+	h_index = size - 1;
 	if (size < 2 || array == NULL)
 		return;
-	quickSort(array, low_index, high_index, size);
+	quickSort(array, l_index, h_index, size);
 }
